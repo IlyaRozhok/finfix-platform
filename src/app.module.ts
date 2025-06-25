@@ -5,6 +5,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { ExpensesModule } from './expenses/expenses.module';
+import { InstallmentsModule } from './installments/installments.module';
 
 console.log('HOST', process.env.DB_URL);
 console.log('PORT', process.env.DB_PORT);
@@ -27,6 +28,7 @@ console.log('PORT', process.env.DB_PORT);
     }),
     UsersModule,
     ExpensesModule,
+    InstallmentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
