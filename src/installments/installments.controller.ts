@@ -1,6 +1,17 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { InstallmentsService } from './installments.service';
 import { CreateInstallmentDto } from './dto/create-installment.dto';
+import { UpdateInstallmentDto } from './dto/update-installment.dto';
 
 @Controller('installments')
 export class InstallmentsController {
@@ -11,8 +22,21 @@ export class InstallmentsController {
     return this.installmentsService.findAll(telegram_id);
   }
 
-  @Post('create')
+  @Post()
   create(@Body() createInstallment: CreateInstallmentDto) {
     return this.installmentsService.create(createInstallment);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateInstallment: UpdateInstallmentDto,
+  ) {
+    return this.installmentsService.update(id, updateInstallment);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.installmentsService.delete(id);
   }
 }
